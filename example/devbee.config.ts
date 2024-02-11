@@ -8,9 +8,20 @@ const config: DevBeeConfig = {
       name: "Buzz All",
     },
     {
-      buzz: () => console.log("Buzzing on all ts files"),
+      buzz: () => {
+        console.log("Buzzing on ts");
+        // maybe do a JS build
+      },
       paths: "./**/*.ts",
       name: "Buzz on ts",
+    },
+    {
+      name: "Zod Bee",
+      paths: "./**/*.zod.ts",
+      buzz: ({ contents, path }) => {
+        console.log(`Buzzing on ${path}`);
+        console.log(contents);
+      },
     },
   ],
 };

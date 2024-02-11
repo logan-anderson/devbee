@@ -1,21 +1,40 @@
 import chokidar from "chokidar";
 import type { FSWatcher } from "chokidar";
 import { DevBeeConfig } from "./types";
+import fs from "fs/promises";
 
 export class FileWatcher {
-  opts: DevBeeConfig;
-  constructor(opts: DevBeeConfig) {
-    this.opts = opts;
+  private _config: DevBeeConfig;
+  watchers: FSWatcher[] = [];
+  constructor(config: DevBeeConfig) {
+    this.config = config;
+  }
+  set config(config: DevBeeConfig) {
+    this._config = config;
+  }
+  get config() {
+    return this._config;
+  }
+  public reset(newConfig: DevBeeConfig) {
+    this.config = newConfig;
+    this.watchers.forEach((watcher) => watcher.close());
+    this.watchers = [];
+    this.watch();
   }
   public watch() {
-    const watchers: FSWatcher[] = [];
-    this.opts.bees?.forEach((bee) => {
-      const watcher = chokidar.watch(bee.paths);
-      watcher.on("change", () => {
-        console.log(`Buzz ${bee?.name || ""}...`);
-        bee.buzz();
+    this.config.bees?.forEach((bee) => {
+      const watcher = chokidar.watch(bee.paths, {
+        ignored: "devbee.config.{js,ts,tsx}",
       });
-      watchers.push(watcher);
+      watcher.on("change", async (path) => {
+        console.log(`🐝 ${bee?.name || ""} 🐝`);
+        const contents = await fs.readFile(path, "utf-8");
+        bee.buzz({
+          contents,
+          path,
+        });
+      });
+      this.watchers.push(watcher);
     });
 
     // for (const key in this.opts) {
