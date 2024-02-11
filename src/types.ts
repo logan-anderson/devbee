@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-export type DevBeePlugin = {};
-
 export const BeeSchema = z.object({
   buzz: z.function(
     z.tuple([
@@ -14,11 +12,21 @@ export const BeeSchema = z.object({
   paths: z.union([z.string(), z.array(z.string())]),
   name: z.string().optional(),
 });
-
 export type Bee = z.infer<typeof BeeSchema>;
 
+export const DevBeePluginSchema = z.object({
+  name: z.string(),
+  setup: z.function(z.tuple([])).optional(),
+  bees: z.array(BeeSchema),
+});
+export type DevBeePlugin = {
+  name: string;
+  setup?: (ctx: any) => void;
+  bees: Bee[];
+};
+
 export const DevBeeConfigSchema = z.object({
-  plugins: z.array(z.object({})).optional(),
+  plugins: z.array(DevBeePluginSchema).optional(),
   bees: z.array(BeeSchema).optional(),
 });
 

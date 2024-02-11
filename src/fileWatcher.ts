@@ -36,15 +36,5 @@ export class FileWatcher {
       });
       this.watchers.push(watcher);
     });
-
-    // for (const key in this.opts) {
-    //   const { func, paths, label } = this.opts[key];
-    //   const watcher = chokidar.watch(paths);
-    //   watcher.on("change", () => {
-    //     console.log(`Running ${label || key}...`);
-    //     func();
-    //   });
-    //   watchers.push(watcher);
-    // }
   }
 }

@@ -6,7 +6,7 @@ import { BuildOptions } from "esbuild";
  * @type {import('esbuild').BuildOptions}
  */
 export const esbuildConfig: BuildOptions = {
-  entryPoints: ["src/cli.ts", "src/index.ts"],
+  entryPoints: ["src/cli.ts", "src/index.ts", "src/plugins.ts"],
   bundle: true,
   outdir: "dist",
   sourcemap: true,
