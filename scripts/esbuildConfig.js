@@ -1,11 +1,9 @@
 // import type { BuildOptions } from "esbuild";
 
-import { BuildOptions } from "esbuild";
-
 /**
  * @type {import('esbuild').BuildOptions}
  */
-export const esbuildConfig: BuildOptions = {
+export const esbuildConfig = {
   entryPoints: ["src/cli.ts", "src/index.ts", "src/plugins.ts"],
   bundle: true,
   outdir: "dist",

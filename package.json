@@ -17,8 +17,8 @@
   "bin": "dist/cli.js",
   "scripts": {
     "type-check": "tsc",
-    "watch": "bun ./scripts/watch.ts",
-    "build": "bun ./scripts/build.ts"
+    "watch": "node ./scripts/watch.js",
+    "build": "node ./scripts/build.js"
   },
   "keywords": [],
   "author": "",
