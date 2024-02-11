@@ -9,10 +9,9 @@ class HelloCommand extends Command {
     description: "Watch for changes and rebuild devbee.config.ts changes.",
   };
 
-  private watcher: FileWatcher;
+  private watcher: FileWatcher = new FileWatcher({});
 
   async execute() {
-    this.watcher = new FileWatcher({});
     await buildAndWatchDevBee(this.watcher);
   }
 }

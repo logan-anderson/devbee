@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild";
-import { esbuildConfig } from "./esbuildConfig.js";
+import { esbuildConfig } from "./esbuildConfig";
 
 await esbuild.build({
   ...esbuildConfig,

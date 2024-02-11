@@ -4,7 +4,7 @@ import { DevBeeConfig } from "./types";
 import fs from "fs/promises";
 
 export class FileWatcher {
-  private _config: DevBeeConfig;
+  private _config: DevBeeConfig = {};
   watchers: FSWatcher[] = [];
   constructor(config: DevBeeConfig) {
     this.config = config;
