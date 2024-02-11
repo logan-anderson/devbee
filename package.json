@@ -16,6 +16,7 @@
   "main": "index.js",
   "bin": "dist/cli.js",
   "scripts": {
+    "type-check": "tsc",
     "watch": "bun ./scripts/watch.ts",
     "build": "bun ./scripts/build.ts"
   },
@@ -30,6 +31,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@types/node": "^20.11.17",
     "typescript": "^5.3.3"
   }
