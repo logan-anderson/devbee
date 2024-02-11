@@ -16,6 +16,7 @@
   "main": "index.js",
   "bin": "dist/cli.js",
   "scripts": {
+    "release": "pnpm run build && changeset publish",
     "type-check": "tsc",
     "watch": "node ./scripts/watch.js",
     "build": "node ./scripts/build.js"
