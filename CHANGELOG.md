@@ -4,4 +4,4 @@
 
 ### Patch Changes
 
-- 171afd9: Inital Version
+- 171afd9: Initial Version
