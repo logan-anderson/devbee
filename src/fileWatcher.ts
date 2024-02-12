@@ -15,6 +15,11 @@ export class FileWatcher {
   get config() {
     return this._config;
   }
+  /**
+   *  Updates the config, removes all previous watchers and sets up new watchers based on the new config
+   *
+   * @param newConfig - The new config to reset the file watcher with
+   */
   public reset(newConfig: DevBeeConfig) {
     this.config = newConfig;
     this.watchers.forEach((watcher) => watcher.close());
@@ -24,7 +29,11 @@ export class FileWatcher {
   public watch() {
     this.config.bees?.forEach((bee) => {
       const watcher = chokidar.watch(bee.paths, {
-        ignored: "devbee.config.{js,ts,tsx}",
+        ignored: [
+          "devbee.config.{js,ts,tsx}",
+          ...(this.config.ignored || []),
+          ...(bee.ignored || []),
+        ],
       });
       watcher.on("change", async (path) => {
         console.log(`🐝 ${bee?.name || ""} 🐝`);

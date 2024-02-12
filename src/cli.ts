@@ -3,8 +3,10 @@ import p from "../package.json";
 import { buildAndWatchDevBee } from "./build";
 import { FileWatcher } from "./fileWatcher";
 
-class HelloCommand extends Command {
-  static paths = [["watch"]];
+/**
+ * The main command for the CLI. ei what happens when the users runs `devbee`
+ */
+class IndexCommand extends Command {
   static usage = {
     description: "Watch for changes and rebuild devbee.config.ts changes.",
   };
@@ -24,5 +26,5 @@ const cli = new Cli({
   binaryVersion: p.version,
 });
 
-cli.register(HelloCommand);
+cli.register(IndexCommand);
 cli.runExit(args);
