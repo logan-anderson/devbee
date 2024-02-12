@@ -18,4 +18,7 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install --frozen-lockfile
+      # Make sure it builds
       - run: pnpm run type-check && pnpm run build
+      # Make sure tests pass
+      - run: pnpm t

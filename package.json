@@ -19,6 +19,7 @@
   "scripts": {
     "release": "pnpm run build && changeset publish",
     "type-check": "tsc",
+    "test": "vitest",
     "watch": "node ./scripts/watch.js",
     "build": "node ./scripts/build.js"
   },
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@types/node": "^20.11.17",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
   }
 }

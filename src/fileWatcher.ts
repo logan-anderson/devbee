@@ -38,6 +38,7 @@ export class FileWatcher {
       watcher.on("change", async (path) => {
         console.log(`🐝 ${bee?.name || ""} 🐝`);
         const contents = await fs.readFile(path, "utf-8");
+        if (contents.startsWith("@devbee-ignore")) return;
         bee.buzz({
           contents,
           path,

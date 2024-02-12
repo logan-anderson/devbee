@@ -1,7 +1,6 @@
 import * as esbuild from "esbuild";
 import path from "path";
 import os from "os";
-import fs from "fs";
 import { FileWatcher } from "../fileWatcher";
 import { DevBeeConfigSchema } from "../types";
 
@@ -24,7 +23,7 @@ export const buildAndWatchDevBee = async (watcher: FileWatcher) => {
             delete require.cache[require.resolve(outfile)];
             const maybeConfig =
               typeof requireRes === "function" ? requireRes() : requireRes;
-            const config = DevBeeConfigSchema.strict().parse(maybeConfig);
+            const config = DevBeeConfigSchema.parse(maybeConfig);
             watcher.reset(config);
             const bees = config.bees?.length || 0;
             console.log(`🐝 Devbee setup with ${bees} busy bees 🐝`);
