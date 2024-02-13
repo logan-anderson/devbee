@@ -1,8 +1,20 @@
 import { DevBeeConfig } from "../src/types";
 import fs from "fs/promises";
 
+const COPYRIGHT_HEADER = `/**
+* Copyright (c) Test
+*/`;
+
 const config: DevBeeConfig = {
   bees: [
+    {
+      paths: "./**/*.ts",
+      name: "Add Copyright Header",
+      buzz: async ({ contents, path }) => {
+        if (contents.startsWith(`/**`)) return;
+        await fs.writeFile(path, `${COPYRIGHT_HEADER}\n${contents}`, "utf-8");
+      },
+    },
     {
       ignored: ["foo.tsx", "src/types.ts"],
       buzz: ({ contents, path }) => {
