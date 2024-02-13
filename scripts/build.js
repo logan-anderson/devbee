@@ -4,7 +4,6 @@ import { esbuildConfig } from "./esbuildConfig.js";
 await esbuild.build({
   ...esbuildConfig,
   format: "esm",
-  platform: "node",
   outExtension: {
     ".js": ".mjs",
   },

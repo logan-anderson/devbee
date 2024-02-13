@@ -14,14 +14,15 @@
       "require": "./dist/cli.cjs"
     }
   },
-  "main": "index.js",
-  "bin": "dist/cli.js",
+  "types": "./src/index.ts",
+  "main": "dist/index.mjs",
+  "bin": "dist/cli.cjs",
   "scripts": {
     "release": "pnpm run build && changeset publish",
-    "type-check": "tsc",
+    "build:types": "tsc",
     "test": "vitest",
     "watch": "node ./scripts/watch.js",
-    "build": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js && pnpm build:types"
   },
   "keywords": [
     "dev tools",

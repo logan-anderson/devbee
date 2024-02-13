@@ -26,6 +26,12 @@ Create a `devbee.config.ts` file in your project’s root directory. Add the fol
 ```ts
 import type { DevBeeConfig } from "devbee";
 
+import fs from "fs/promises";
+
+const COPYRIGHT_HEADER = `/**
+* Copyright (c) Test
+*/`;
+
 const config: DevBeeConfig = {
   plugins: [
     // Add your plugins here
